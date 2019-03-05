@@ -2,11 +2,11 @@ const Node = require('./node');
 
 class MaxHeap {
 	constructor() {
-		
+		this.root = null;
 	}
 
 	push(data, priority) {
-		
+
 	}
 
 	pop() {
