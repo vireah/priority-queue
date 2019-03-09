@@ -8,15 +8,14 @@ class Node {
 	}
 
 	appendChild(node) {
-		this.root = data;
+		this.root = node;
 	}
 
 	removeChild(node) {
-
+	
 	}
 
 	remove() {
-
 	}
 
 	swapWithParent() {
