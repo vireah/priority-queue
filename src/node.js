@@ -5,6 +5,7 @@ class Node {
 		this.left = null;
    		this.right = null;
 		this.parent = null;
+		//this.child = null;
 		this.next = null;  
 	}
 
@@ -15,14 +16,19 @@ class Node {
 	}
 
 	removeChild(node) {
-		if(!this.parent.node){
+		if(!this.parent){
 			return 'error';
+		} else {
+			let current = this.parent;
+			
 		}
 		return this.parent.node = null;
 	}
 
 	remove() {
-	
+		if(!this.node){
+		this.parent.removeChild(child);
+		}
 	}
 
 	swapWithParent() {
