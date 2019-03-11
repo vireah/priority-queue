@@ -9,14 +9,20 @@ class Node {
 	}
 
 	appendChild(node) {
-		this.root = node;
+		if(!this.right && !this.left ){
+			this.parent = node;
+		}
 	}
 
 	removeChild(node) {
-	
+		if(!this.parent.node){
+			return 'error';
+		}
+		return this.parent.node = null;
 	}
 
 	remove() {
+	
 	}
 
 	swapWithParent() {
