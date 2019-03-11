@@ -4,7 +4,7 @@ class MaxHeap {
 	constructor() {
 		this.root = null;
 		this.left = null;
-		this.right = null;
+		this.right = null
 		//this.heap = [null]
 		this.parentNodes = [];
 		this.nodes=[];
@@ -44,8 +44,8 @@ class MaxHeap {
 	}
 
 	insertNode(node) {
-		if ( this.isEmpty ){
-			this.root = node;
+		if (!this.nodes){
+			this.root=node;
 			this.nodes.push(node);
 		}
 		else {
