@@ -4,7 +4,8 @@ class Node {
 		this.priority = priority;
 		this.left = null;
    		this.right = null;
-  		this.parent = null;
+		this.parent = null;
+		this.next = null;  
 	}
 
 	appendChild(node) {

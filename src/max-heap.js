@@ -7,7 +7,8 @@ class MaxHeap {
 	}
 
 	push(data, priority) {
-
+		this.data = data;
+		this.priority = priority;
 	}
 
 	pop() {
@@ -23,7 +24,7 @@ class MaxHeap {
 	}
 
 	size() {
-		
+		return this.root.length;
 	}
 
 	isEmpty() {
@@ -35,7 +36,6 @@ class MaxHeap {
 	}
 
 	insertNode(node) {
-		
 	}
 
 	shiftNodeUp(node) {
