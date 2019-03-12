@@ -58,6 +58,10 @@ class Node {
 		if(this.parent==null){
 			return;
 		}
+
+
+		
+	
 		//const temp = this.parent;
 	//	this.left.parent=this.parent;
 	//	this.right.parent=this.parent;
@@ -84,8 +88,31 @@ class Node {
 			 this.parent.parent.right=this;
 			 
 		 }
+		let ri=this.right;
+		let le=this.left;
+
+		 if(this.parent.left==this){
+			
+			this.left=this.parent;
+			this.right=this.parent.right;
+		   
+		}
+	   else if (this.parent.right==this){ 
+			this.right=this.parent;
+			this.left= this.parent.left;
+			
+		}
+		this.parent.left=le;
+		this.parent.right=ri;
+		
 		
 			 this.parent=this.parent.parent;
+			 this.parent.parent= this;
+
+			 
+		const parent1= this.parent.parent;
+		this.parent.parent=this;
+		this.paren= parent1;
 			 
 
 			 
