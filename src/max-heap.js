@@ -22,14 +22,20 @@ class MaxHeap {
 		if(this.root==null){
 				return;
 		}
+		this.detachRoot();
+		//console.log("------------------------------")
+	//	console.log(this.root.data);
+		//console.log(this);
+		//console.log("------------------------------")
 		return this.root;
 
 		
 	}
 
 	detachRoot() {
-		
-
+		const root = this.root; 
+		this.root = null;
+		return root;
 		
 	}
 
@@ -53,15 +59,15 @@ class MaxHeap {
 
 	insertNode(node) {
 		if ( this.root==null && this.nodes.length==0){
-			console.log(this.nodes.length);
+		//	console.log(this.nodes.length);
 			this.root=node;
 			this.nodes.push(node);
 			this.parentNodes.push(node);
-			console.log(this.nodes.length);
+		///	console.log(this.nodes.length);
 		}
 		else {
 			this.nodes.push(node);
-			console.log(this.root.data);
+			//console.log(this.root.data);
 			let currentNodeIdx = this.nodes.length - 1;
 			let currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
 			node.parent=this.nodes[currentNodeParentIdx];

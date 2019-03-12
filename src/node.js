@@ -5,14 +5,11 @@ class Node {
 		this.left = null;
    		this.right = null;
 		this.parent = null;
-		//this.child = null;
+		this.child = null;
 		this.next = null;  
 	}
 
 	appendChild(node) {
-		//if(!this.right && !this.left ){
-			//this.parent = node;
-		//}
 		if ( this.left == null || this.left==node){
 			this.left=node;
 			node.parent=this;
@@ -22,13 +19,10 @@ class Node {
 			this.right=node;
 			node.parent=this;
 			}
-			
 		}
 	}
 
 	removeChild(node) {
-	
-		
 		if ( this.left==node){
 			 this.left=null;
 			 node.parent=null;
@@ -38,18 +32,13 @@ class Node {
 				this.right=null;
 				node.parent=null;
 			return;
-		}
-
-		else throw e;
-		
-		
+		} else throw e;
 	}
 
 	remove() {
 		if(this.parent==null){
 			return;
-		}
-		else{
+		} else{
 		 this.parent.removeChild(this);
 		}
 	}
@@ -59,27 +48,23 @@ class Node {
 			return;
 		}
 
-
+		const temp = this.parent.left;// save parent
+		const temp3 = this.parent.right;
+		const temp2 = this.parent.parent; //save child
+		//this.parent = this.parent.parent;
+		//this.parent.parent = temp;
+		this.parent.left = null;
+		this.parent.parent =this;
+		this.left = temp;
+		this.right = temp3;
+		this.parent = temp2;
 		
-	
-		//const temp = this.parent;
-	//	this.left.parent=this.parent;
-	//	this.right.parent=this.parent;
-		
-		/*if(this.parent.left==this){	
-			this.parent.right = this.right;
-			this.parent.left=this.left;
-			this.left=this.parent;
-			
-		}
-		else if( this.parent.right==this){
-			this.parent.right = this.right;
-			this.parent.left=this.left;
-			this.right=this.parent;
-		}
-		*/
+		//this.parent = null;
+		 // save child node in parent property
 		
 
+		
+		/*
 		 if(this.parent.parent.left==this.parent){
 			 this.parent.parent.left=this;
 			
@@ -114,7 +99,7 @@ class Node {
 		this.parent.parent=this;
 		this.paren= parent1;
 			 
-
+		*/
 			 
 	}
 }
