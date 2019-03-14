@@ -48,58 +48,66 @@ class Node {
 			return;
 		}
 
-		const temp = this.parent.left;// save parent
-		const temp3 = this.parent.right;
-		const temp2 = this.parent.parent; //save child
-		//this.parent = this.parent.parent;
-		//this.parent.parent = temp;
-		this.parent.left = null;
-		this.parent.parent =this;
-		this.left = temp;
-		this.right = temp3;
-		this.parent = temp2;
-		
-		//this.parent = null;
-		 // save child node in parent property
-		
+		const temp = this.left;
+		const temp3 = this.right;
+		const temp2 = this.parent.parent; 
+		const temp4  = this.parent ;
 
-		
-		/*
-		 if(this.parent.parent.left==this.parent){
-			 this.parent.parent.left=this;
+		if (this.parent.parent != null){
 			
-		 }
-		else if (this.parent.parent.right==this.parent){ 
-			 this.parent.parent.right=this;
-			 
-		 }
-		let ri=this.right;
-		let le=this.left;
-
-		 if(this.parent.left==this){
-			
-			this.left=this.parent;
-			this.right=this.parent.right;
-		   
+			if ( this.parent.parent.left==this.parent){
+				this.parent.parent.left=this;
+			}
+			else if( this.parent.parent.right==this.parent){
+					this.parent.parent.right=this;
+			}
 		}
-	   else if (this.parent.right==this){ 
-			this.right=this.parent;
-			this.left= this.parent.left;
+
+	
+	
+		this.parent.parent = this;
+
+		this.parent=temp2;
+		
+		if ( temp4.left!= this && temp4.left!=null){ 
+			temp4.left.parent = this;
+			
 			
 		}
-		this.parent.left=le;
-		this.parent.right=ri;
-		
-		
-			 this.parent=this.parent.parent;
-			 this.parent.parent= this;
+		if ( temp4.right!=this && temp4.right!=null){
+			temp4.right.parent= this;
+			
+		}
+		if(temp4.left!=null){
+			if (temp4.left==this){
+			this.left = temp4;
+			}
+			else{
+				this.left = temp4.left;
+			}
+			
+		}
 
-			 
-		const parent1= this.parent.parent;
-		this.parent.parent=this;
-		this.paren= parent1;
-			 
-		*/
+
+		if(temp4.right!=null){
+			if (temp4.right==this){
+				this.right=temp4;
+				}
+				else{
+					this.right = temp4.right;
+				}
+			this.right= temp4.right;
+		}
+		
+		
+
+		if( temp!=null){
+			temp4.left=temp;
+		}
+		if( temp3!=null){
+			temp4.right=temp3;
+		}
+
 			 
 	}
 }
