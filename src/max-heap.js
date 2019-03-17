@@ -3,39 +3,39 @@ const Node = require('./node');
 class MaxHeap {
 	constructor() {
 		this.root = null;
-		this.left = null;
-		this.right = null
-		//this.heap = [null]
 		this.parentNodes = [];
 		this.nodes=[];
-	}
-
-	push(data, priority) {
-		//this.data = data;
-		//this.priority = priority;\
-		let node = new Node(data, priority);
-		this.insertNode(node);
-		this.shiftNodeUp(node);
-	}
-
-	pop() {
-		if(this.root==null){
-				return;
-		}
-		this.detachRoot();
-		//console.log("------------------------------")
-	//	console.log(this.root.data);
-		//console.log(this);
-		//console.log("------------------------------")
-		return this.root;
-
 		
 	}
 
+	push(data, priority) {
+		let node = new Node(data, priority);
+		this.insertNode(node);
+		this.shiftNodeUp(node);
+		
+	}
+
+	pop() {
+		if(this.root==null){	
+				return;
+		}
+		this.detachRoot();
+		return this.root.data;
+
+	}
+
 	detachRoot() {
-		const root = this.root; 
-		this.root = null;
-		return root;
+		const  rooty = this.root;
+		if ( this.size() ==1){
+			this.parentNodes.shift()
+			this.root = null;
+			return rooty;
+		}
+		if( this.size()%2 ==0){
+				this.parentNodes.shift();
+		}
+		this.root=this.root.left;
+		return rooty;
 		
 	}
 
@@ -59,63 +59,70 @@ class MaxHeap {
 
 	insertNode(node) {
 		if ( this.root==null && this.nodes.length==0){
-		//	console.log(this.nodes.length);
 			this.root=node;
 			this.nodes.push(node);
 			this.parentNodes.push(node);
-		///	console.log(this.nodes.length);
+		
 		}
 		else {
+
+			if ( this.size()%2!=0){
+				this.parentNodes.push(node)
+			}
+			else {
+				this.parentNodes.shift();
+				this.parentNodes.push(node);
+			}
 			this.nodes.push(node);
-			//console.log(this.root.data);
-			let currentNodeIdx = this.nodes.length - 1;
+			let currentNodeIdx = this.size() - 2;
 			let currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
 			node.parent=this.nodes[currentNodeParentIdx];
+
 			if( this.nodes[currentNodeParentIdx].left == null){
 				this.nodes[currentNodeParentIdx].left=node;
+				
 			}
 			else {
 				this.nodes[currentNodeParentIdx].right=node;
-
+				
 			}
-
-
+		
 			
 		}
 	}
 	
-		//node.shiftNodeUp;
-
-			//const newNode = new Node(value, priority);
-			/*this.root.push(node);
-			let currentNodeIdx = this.heap.length - 1;
-			let currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
-			while (
-			  this.heap[currentNodeParentIdx] &&
-			  newNode.priority > this.heap[currentNodeParentIdx].priority
-			) {
-			  const parent = this.heap[currentNodeParentIdx];
-			  this.heap[currentNodeParentIdx] = newNode;
-			  this.heap[currentNodeIdx] = parent;
-			  currentNodeIdx = currentNodeParentIdx;
-			  currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
-			}
-			while (
-			  this.nodes[currentNodeParentIdx] &&
-			  node.priority > this.nodes[currentNodeParentIdx].priority
-			) {
-			  const parent = this.nodes[currentNodeParentIdx];
-			  this.nodes[currentNodeParentIdx] = node;
-			  this.nodes[currentNodeIdx] = parent;
-			  currentNodeIdx = currentNodeParentIdx;
-			  currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
-
-			}
-*/
 	
 
 	shiftNodeUp(node) {
-
+		
+		if(node.parent==null){
+			if(this.root!=node){
+				this.root=node;
+			}
+			return;
+		}
+		
+		 
+		if (node.priority > node.parent.priority){
+		
+			const index1 = this.parentNodes.indexOf(node);
+			const index2 = this.parentNodes.indexOf(node.parent);
+			if( index2 != -1){
+				this.parentNodes[index1]=node.parent;
+				this.parentNodes[index2]=node;
+			}
+			else {
+				this.parentNodes[index1]=node.parent;
+			}
+			node.swapWithParent();
+			this.shiftNodeUp(node);
+			return;
+		}
+			
+			
+			
+		
+		
 
 
 
@@ -123,6 +130,40 @@ class MaxHeap {
 	}
 
 	shiftNodeDown(node) {
+		if(node.left==null && node.right==null){
+		
+			return;
+		}
+		node.left.swapWithParent();
+	/*	if (node.left.priority > node.right.priority && node.priority < node.left.priority) {
+			
+				console.log ("govno2");
+				node.left.swapWithParent();
+				this.shiftNodeDown(node);	
+				return ; 
+		
+		}
+		 if (node.left.priority < node.right.priority && node.priority < node.right.priority ){
+			console.log ("govno3");
+
+			node.right.swapWithParent();
+			this.shiftNodeDown(node);
+			return;
+		}
+		
+		 else return;
+		 
+		console.log(node);
+		console.log("-----------1");
+		node.left.swapWithParent();
+		console.log(node);
+		console.log("-----------2");
+		node.left.swapWithParent();
+		console.log(node );
+		console.log("-----------3");
+		*/
+		
+
 		
 	}
 }
