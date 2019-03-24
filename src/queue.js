@@ -28,7 +28,7 @@ class PriorityQueue {
 			 throw e;
 		}
 
-		this.heap.pop();
+		return this.heap.pop();
 
 	}
 

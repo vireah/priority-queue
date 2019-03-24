@@ -23,8 +23,8 @@ class MaxHeap {
 		
 		
 		const detached = this.detachRoot();
-		//this.restoreRootFromLastInsertedNode(detached);
-		//this.shiftNodeDown(this.root);
+	//	this.restoreRootFromLastInsertedNode(detached);
+	//	this.shiftNodeDown(this.root);
 		return detached.data;
 
 	}
