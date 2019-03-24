@@ -49,7 +49,7 @@ class MaxHeap {
 		else {
 			this.root=this.root.right;
 			this.root.left= rooty.left;
-			console.log("    -----    ");
+			//console.log("    -----    ");
 		}
 		this.nodes.shift();
 		return rooty;
@@ -74,6 +74,7 @@ class MaxHeap {
 	}
 
 	size() {
+	//	console.log(this.nodes.length);
 		return this.nodes.length;
 	}
 
@@ -85,6 +86,7 @@ class MaxHeap {
 	clear() {
 		this.root = null;
 		this.parentNodes = [];
+		this.nodes= [];
 	}
 
 	insertNode(node) {
