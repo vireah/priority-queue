@@ -35,6 +35,11 @@ class Node {
 		} else throw e;
 	}
 
+	toNormal ()
+	{
+		console.log(this.priority + this.parent.priority+this.left.priority);
+	}
+
 	remove() {
 		if(this.parent==null){
 			return;
@@ -52,6 +57,8 @@ class Node {
 		const temp3 = this.right;
 		const temp2 = this.parent.parent; 
 		const temp4  = this.parent ;
+
+		//console.log(" first "+ temp4.priority +"  "+this.parent.priority);
 
 		if (this.parent.parent != null){
 			
@@ -103,9 +110,19 @@ class Node {
 
 		if( temp!=null){
 			temp4.left=temp;
+			temp.parent=temp4;
+		}
+		else{
+			//console.log(this.priority +"   " +temp4.priority+"  "+temp4.left.priority);
+			temp4.left=null;
+			
 		}
 		if( temp3!=null){
 			temp4.right=temp3;
+			temp3.parent=temp4;
+		}
+		else {
+			temp4.right=null;
 		}
 
 			 

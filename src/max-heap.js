@@ -23,7 +23,7 @@ class MaxHeap {
 			return;
 		}
 		//this.detachRoot();
-		let t = this.root.data;
+		const t = this.root.data;
 		this.detachRoot();
 		//return this.root.data;
 		return t;
@@ -136,20 +136,28 @@ class MaxHeap {
 	}
 
 	shiftNodeDown(node) {
+		console.log("govno 0 ");
 		if(node.left==null && node.right==null){
-		
+			console.log ("govno1");
 			return;
 		}
-		node.left.swapWithParent();
-	/*	if (node.left.priority > node.right.priority && node.priority < node.left.priority) {
+		///console.log ("1 swap  "+node.priority+ "  " +node.left.priority);
+		//node.left.swapWithParent();
+		//console.log ("2 swap  "+node.priority+ "  " +node.left.priority);
+		//node.left.swapWithParent();
+		//console.log ("after swap  "+node.priority+ "  " +node.left.priority+"  "+node.parent.priority);
+		
+	
+		if ((node.right==null  && node.priority < node.left.priority )||( node.left.priority > node.right.priority && node.priority < node.left.priority)) {
 			
 				console.log ("govno2");
 				node.left.swapWithParent();
+				//console.log(node.priority +"   "+ node.left.priority);
 				this.shiftNodeDown(node);	
 				return ; 
 		
 		}
-		 if (node.left.priority < node.right.priority && node.priority < node.right.priority ){
+	 if  ((node.left==null  && node.priority < node.right.priority )||(node.left.priority < node.right.priority && node.priority < node.right.priority) ){
 			console.log ("govno3");
 
 			node.right.swapWithParent();
@@ -157,17 +165,10 @@ class MaxHeap {
 			return;
 		}
 		
-		 else return;
+		// else return;
 		 
-		console.log(node);
-		console.log("-----------1");
-		node.left.swapWithParent();
-		console.log(node);
-		console.log("-----------2");
-		node.left.swapWithParent();
-		console.log(node );
-		console.log("-----------3");
-		*/
+		
+		 console.log("-----------------------------------");
 		
 
 		
