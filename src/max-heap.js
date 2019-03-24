@@ -16,14 +16,17 @@ class MaxHeap {
 	}
 
 	pop() {
-		console.log(this.root);
-		console.log(this.parentNode);
-		console.log(this.nodes);
+		//console.log("root============",this.root);
+		//console.log("parentNode==========",this.parentNode);
+		//console.log("nodes===========",this.nodes);
 		if(this.root==null){	
 			return;
 		}
 		//this.detachRoot();
-		return this.root.data;
+		let t = this.root.data;
+		this.detachRoot();
+		//return this.root.data;
+		return t;
 
 	}
 
