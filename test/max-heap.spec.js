@@ -310,17 +310,17 @@ describe('MaxHeap', () => {
 			h = new MaxHeap();
 
 			h.push(42, 15);
-			h.push(14, 32);
+			h.push(14, 32);		
 			h.push(0, 0);
 		});
 
 		it('should remove last inserted node and assing it to root', () => {
 			const lastInsertedNode = h.root.right;
+			
 			const left = h.root.left;
 
 			const detached = h.detachRoot();
 			h.restoreRootFromLastInsertedNode(detached);
-
 			expect(h.root).to.equal(lastInsertedNode);
 			expect(h.root.left).to.equal(left);
 			expect(left.parent).to.equal(lastInsertedNode);
@@ -437,7 +437,7 @@ describe('MaxHeap', () => {
             h.shiftNodeDown(h.root);
 
             expect(h.root).to.equal(newRoot);
-            expect(h.root.right.left).to.equal(newDeepest);
+        	expect(h.root.right.left).to.equal(newDeepest);
             expect(h.parentNodes.map(n=>n.priority)).to.deep.equal([5,8,1,6]);
         });
 

@@ -103,7 +103,7 @@ class Node {
 				else{
 					this.right = temp4.right;
 				}
-			this.right= temp4.right;
+			
 		}
 		
 		
@@ -113,7 +113,7 @@ class Node {
 			temp.parent=temp4;
 		}
 		else{
-			//console.log(this.priority +"   " +temp4.priority+"  "+temp4.left.priority);
+			
 			temp4.left=null;
 			
 		}
