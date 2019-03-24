@@ -32,12 +32,13 @@ class MaxHeap {
 	detachRoot() {
 		const  rooty = this.root;
 		if ( this.size() ==1){
-			this.parentNodes.shift()
+			this.parentNodes.shift();
+			this.nodes.shift();
 			this.root = null;
 			return rooty;
 		}
 		if( this.size()%2 ==0){
-				this.parentNodes.shift();
+			this.parentNodes.shift();
 		}
 
 		if(  this.root.right==null || this.root.left.priority >  this.root.right.priority){
