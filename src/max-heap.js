@@ -46,10 +46,6 @@ class MaxHeap {
 	}
 
 	restoreRootFromLastInsertedNode(detached) {
-		//console.log(this.parentNodes[1].priority);
-		//console.log(detached.priority);
-		
-		//console.log(this.root.priority+ "  "+ this.root.left.priority);
 		const temp = this.parentNodes.pop();
 		const temp2= this.root;
 		
@@ -58,13 +54,10 @@ class MaxHeap {
 		this.root.left = temp2;
 		
 		this.root.left.parent=this.root;
-	//	console.log(this.root.priority);
-		//console.log(this.root.left.priority);
-		//console.log(this.root.left.parent.priority);
-
-		///	console.log(temp2.parent.priority);
-		
-		//	console.log(this.root.priority+ "  "+ this.root.left.priority);
+		if(this.parentNodes.length < 3){
+			this.parentNodes.unshift(temp);
+		}
+	
 		
 	}
 
@@ -103,12 +96,13 @@ class MaxHeap {
 			let currentNodeParentIdx = Math.floor(currentNodeIdx / 2);
 			node.parent=this.nodes[currentNodeParentIdx];
 
-			if( this.nodes[currentNodeParentIdx].left == null){
-				this.nodes[currentNodeParentIdx].left=node;
+			if( node.parent.left == null){
+				node.parent.left=node;
+				//console.log(node.parent.priority+ "  "+node.priority);
 				
 			}
 			else {
-				this.nodes[currentNodeParentIdx].right=node;
+				node.parent.right=node;
 				
 			}
 		
@@ -123,6 +117,7 @@ class MaxHeap {
 		if(node.parent==null){
 			if(this.root!=node){
 				this.root=node;
+				//console.log(this.root.priority);
 			}
 			return;
 		}
@@ -130,6 +125,10 @@ class MaxHeap {
 		 
 		if (node.priority > node.parent.priority){
 		
+			const ind1 = this.nodes.indexOf(node);
+			const ind2 = this.nodes.indexOf(node.parent);
+			this.nodes[ind1] = node.parent;
+			this.nodes[ind2] = node;
 			const index1 = this.parentNodes.indexOf(node);
 			const index2 = this.parentNodes.indexOf(node.parent);
 			if( index2 != -1){
@@ -162,8 +161,16 @@ class MaxHeap {
 	
 		
 		if ((node.right==null  && node.priority < node.left.priority )||( node.left.priority > node.right.priority && node.priority < node.left.priority)) {
+			
+
+			const ind1 = this.nodes.indexOf(node);
+			const ind2 = this.nodes.indexOf(node.left);
+			this.nodes[ind1] = node.left;
+			this.nodes[ind2] = node;
+
 			const index1 = this.parentNodes.indexOf(node);
 			const index2 = this.parentNodes.indexOf(node.left);
+
 			if( index1 != -1){
 				this.parentNodes[index1]=node.left;
 				this.parentNodes[index2]=node;
@@ -187,6 +194,12 @@ class MaxHeap {
 		
 		}
 	 if  ((node.left==null  && node.priority < node.right.priority )||(node.left.priority < node.right.priority && node.priority < node.right.priority) ){
+		
+		const ind1 = this.nodes.indexOf(node);
+		const ind2 = this.nodes.indexOf(node.right);
+		this.nodes[ind1] = node.right;
+		this.nodes[ind2] = node;
+
 		const index1 = this.parentNodes.indexOf(node);
 		const index2 = this.parentNodes.indexOf(node.right);
 		if( index1 != -1 && index2!=-1){
