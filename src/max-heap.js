@@ -136,39 +136,42 @@ class MaxHeap {
 	}
 
 	shiftNodeDown(node) {
-		console.log("govno 0 ");
 		if(node.left==null && node.right==null){
-			console.log ("govno1");
 			return;
 		}
-		///console.log ("1 swap  "+node.priority+ "  " +node.left.priority);
-		//node.left.swapWithParent();
-		//console.log ("2 swap  "+node.priority+ "  " +node.left.priority);
-		//node.left.swapWithParent();
-		//console.log ("after swap  "+node.priority+ "  " +node.left.priority+"  "+node.parent.priority);
-		
 	
+		
 		if ((node.right==null  && node.priority < node.left.priority )||( node.left.priority > node.right.priority && node.priority < node.left.priority)) {
-			
-				console.log ("govno2");
+			const index1 = this.parentNodes.indexOf(node);
+			const index2 = this.parentNodes.indexOf(node.left);
+			if( index1 != -1){
+				this.parentNodes[index1]=node.left;
+				this.parentNodes[index2]=node;
+			}
+			else {
+				this.parentNodes[index2]=node;
+				this.root=node.left;
+			}
 				node.left.swapWithParent();
-				//console.log(node.priority +"   "+ node.left.priority);
 				this.shiftNodeDown(node);	
 				return ; 
 		
 		}
 	 if  ((node.left==null  && node.priority < node.right.priority )||(node.left.priority < node.right.priority && node.priority < node.right.priority) ){
-			console.log ("govno3");
-
+		const index1 = this.parentNodes.indexOf(node);
+		const index2 = this.parentNodes.indexOf(node.right);
+		if( index1 != -1){
+			this.parentNodes[index1]=node.right;
+			this.parentNodes[index2]=node;
+		}
+		else {
+			this.parentNodes[index2]=node;
+			this.root=node.right;
+		}
 			node.right.swapWithParent();
 			this.shiftNodeDown(node);
 			return;
 		}
-		
-		// else return;
-		 
-		
-		 console.log("-----------------------------------");
 		
 
 		
