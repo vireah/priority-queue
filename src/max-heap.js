@@ -16,10 +16,13 @@ class MaxHeap {
 	}
 
 	pop() {
+		console.log(this.root);
+		console.log(this.parentNode);
+		console.log(this.nodes);
 		if(this.root==null){	
-				return;
+			return;
 		}
-		this.detachRoot();
+		//this.detachRoot();
 		return this.root.data;
 
 	}
