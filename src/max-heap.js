@@ -41,6 +41,7 @@ class MaxHeap {
 				this.parentNodes.shift();
 		}
 		this.root=this.root.left;
+		this.nodes.shift();
 		return rooty;
 		
 	}
@@ -48,16 +49,17 @@ class MaxHeap {
 	restoreRootFromLastInsertedNode(detached) {
 		const temp = this.parentNodes.pop();
 		const temp2= this.root;
-		
 		this.root= temp;
-		
 		this.root.left = temp2;
-		
 		this.root.left.parent=this.root;
-		if(this.parentNodes.length < 3){
-			this.parentNodes.unshift(temp);
+		this.nodes.pop();
+		this.nodes.unshift(temp);
+		const idx = this.nodes.indexOf(this.parentNodes[0]);
+
+		if(this.nodes.length %2==0 || this.nodes.length==1){
+			
+			this.parentNodes.unshift(this.nodes[idx-1]);
 		}
-	
 		
 	}
 
